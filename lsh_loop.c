@@ -9,7 +9,7 @@ void inf_loop(void)
 	char *line;
 	char **cmd;
 
-	do {
+	while(1){
 		printf("($)> ");
 		line = read_line();
 		cmd = split_line(line);
@@ -17,5 +17,5 @@ void inf_loop(void)
 
 		free(line);
 		free(cmd);
-	} while (1);
+	}
 }
