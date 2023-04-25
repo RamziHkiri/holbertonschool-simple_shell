@@ -19,7 +19,7 @@ void execute_cmd(char **cmd)
 	}
 	else
 	{
-		if(execve(cmd[0], cmd, NULL) == -1)
+		if (execve(cmd[0], cmd, NULL) == -1)
 		perror("shell");
 		exit(EXIT_FAILURE);
 	}
