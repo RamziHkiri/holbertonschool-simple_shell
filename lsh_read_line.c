@@ -1,5 +1,9 @@
 #include"simple_shell.h"
 #define LSH_RL_BUFSIZE 1024
+/**
+ * read_line - get the input commande
+ * Return: pointer on string that containe the commande
+ */
 char *read_line(void)
 {
 	int bufsize = LSH_RL_BUFSIZE;
@@ -7,27 +11,32 @@ char *read_line(void)
 	char *buffer = malloc(sizeof(char) * bufsize);
 	int c;
 
-	if (!buffer) {
+	if (!buffer)
+	{
 		fprintf(stderr, "lsh: allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 
-	while (1) {
+	while (1)
+	{
 		c = getchar();
 
-		if (c == EOF || c == '\n') {
+		if (c == EOF || c == '\n')
+		{
 			buffer[position] = '\0';
-			return buffer;
-		} else {
+			return (buffer);
+		}
+		else
+		{
 			buffer[position] = c;
 		}
 		position++;
-
-
-		if (position >= bufsize) {
+		if (position >= bufsize)
+		{
 			bufsize += LSH_RL_BUFSIZE;
 			buffer = realloc(buffer, bufsize);
-			if (!buffer) {
+			if (!buffer)
+			{
 				fprintf(stderr, "lsh: allocation error\n");
 				exit(EXIT_FAILURE);
 			}
