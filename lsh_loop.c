@@ -12,6 +12,11 @@ void inf_loop(void)
 	do {
 		printf("($) ");
 		line = read_line();
+		if (strcmp(line,"exit")==0)
+		{
+			free(line);
+			exit(0);
+		}
 		cmd = split_line(line);
 		execute_cmd(cmd);
 		free(line);
