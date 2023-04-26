@@ -8,15 +8,13 @@ void inf_loop(void)
 {
 	char *line;
 	char **cmd;
-	int stat;
 
 	do {
-		printf("($)> ");
+		printf("($) ");
 		line = read_line();
 		cmd = split_line(line);
-		stat = execute_cmd(cmd);
-
+		execute_cmd(cmd);
 		free(line);
 		free(cmd);
-	} while (status);
+	} while (1);
 }
