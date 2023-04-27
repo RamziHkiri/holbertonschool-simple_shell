@@ -1,0 +1,51 @@
+.TH man 1 "man_1_simple_shell"
+
+.SH NAME
+
+	man_1_simple_shell
+
+.SH SYNOPSIS
+
+	man_1_simple_shell 
+
+Description
+
+.SH DESCRIPTION
+
+A shell terminal, also known as a command line interface or CLI, is a text-based interface used to interact with an operating system or application. It allows users to input commands through a keyboard and receive output in text format on a screen.
+
+The shell terminal provides access to a wide range of system utilities and commands that can be used to perform various tasks such as navigating the file system, managing processes, configuring system settings, and running applications.
+
+.SH INVOCATION
+
+If any of the files exist but cannot be read, bash reports an error.
+If any of the commands entered from the terminal do not exist, bash reports an error.
+If any of the entered commands exist and can be read, bash executes the entered command followed by a new line.
+
+.SH COMMANDS
+
+ls: Shows the contents of the folder.
+
+mkdir: make directory.
+
+rmdir: delete directory.
+
+touch: create file.
+
+cat: shows content of a file.
+
+rm: remove file.
+
+echo:
+
+pwd:show the path of the current directory.
+
+mv: move file.
+
+etc...
+
+.SH AUTHOR
+Ramzi Hkiri (https://github.com/RamziHkiri)
+
+.SH COPYRIGHT
+Copyright (C) 2023 @RAMZI_HKIRI
