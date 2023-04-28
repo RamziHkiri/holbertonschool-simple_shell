@@ -1,5 +1,10 @@
-#include<string.h>
-#include"simple_shell.h"
+#include "simple_shell.h"
+/**
+ * split - function taht split the input in an array of string
+ * @raw_cmd: the input
+ * @limit: the delimenter
+ * Return: array of string
+ */
 char **split(char *raw_cmd, char *limit)
 {
 	char	*ptr = NULL;
@@ -20,34 +25,43 @@ char **split(char *raw_cmd, char *limit)
 	return (cmd);
 }
 /**
+ * get_path - function that read the path
+ * @cmd: the commande
  */
 void get_path(char **cmd)
 {
 	int i;
-	char *path = getenv("PATH");
-	char *full_path;
-	char **s_path;
-	
+	char	*path = strdup(getenv("PATH"));
+	char	*bin = NULL;
+	char	**path_split = NULL;
+
 	if (cmd[0][0] != '/' && strncmp(cmd[0], "./", 2) != 0)
 	{
-		s_path = split(path, ":");
+
+		path_split = split(path, ":");
 		free(path);
-		for (i = 0; s_path[i]; i++)
+		path = NULL;
+		for (i = 0; path_split[i]; i++)
 		{
-			full_path = calloc(sizeof(char),(strlen(s_path[i]) + strlen(cmd[0]) + 2));
-			if (full_path == NULL)
+
+			bin = calloc(sizeof(char),
+					(strlen(path_split[i]) + 1 + strlen(cmd[0]) + 1));
+			if (bin == NULL)
 				break;
-			strcat(full_path, s_path[i]);
-			strcat(full_path, "/");
-			strcat(full_path, cmd[0]);
-			if (access(full_path, F_OK) == 0)
+			strcat(bin, path_split[i]);
+			strcat(bin, "/");
+			strcat(bin, cmd[0]);
+
+			if (access(bin, F_OK) == 0)
 				break;
-			free(full_path);
-			full_path = NULL;
+		free(bin);
+			bin = NULL;
 		}
-		cmd[0] = full_path;
-	} 
-	else
+		free_array(path_split);
+
+		free(cmd[0]);
+		cmd[0] = bin;
+	} else
 	{
 		free(path);
 		path = NULL;	}
