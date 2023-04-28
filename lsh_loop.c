@@ -1,25 +1,43 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include"simple_shell.h"
 /**
  * inf_loop - loop inlimited
  */
 void inf_loop(void)
+
 {
 	char *line;
 	char **cmd;
+	int i, stats = 0;
 
+	builtins_t tab[] = {
+		{"exit", sh_exit},
+		{"cd", sh_cd},
+		{"help", sh_help}
+	};
 	do {
-		printf("($) ");
+		printf("> ");
 		line = read_line();
-		if (strcmp(line,"exit")==0)
-		{
-			free(line);
-			exit(0);
-		}
 		cmd = split_line(line);
-		execute_cmd(cmd);
-		free(line);
-		free(cmd);
+		if (strcmp(cmd[0], "env") == 0)
+		{
+			print_env();
+			continue;
+		}
+		for (i = 0; i < 3 ; i++)
+		{
+			if (strcmp(cmd[0], tab[i].commande) == 0)
+			{
+				stats = 1;
+				tab[i].func(cmd);
+				continue;
+			}
+		}
+		if (stats == 0)
+		{
+			get_path(cmd);
+			execute_cmd(cmd);
+		}
+		stats = 0;
 	} while (1);
+	free(line);
 }
