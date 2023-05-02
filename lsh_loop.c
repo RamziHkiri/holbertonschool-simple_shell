@@ -3,7 +3,6 @@
  * inf_loop - loop inlimited
  */
 void inf_loop(void)
-
 {
 	char *line;
 	char **cmd;
@@ -15,12 +14,12 @@ void inf_loop(void)
 		{"help", sh_help}
 	};
 	do {
-		printf("> ");
 		line = read_line();
 		cmd = split_line(line);
 		if (strcmp(cmd[0], "env") == 0)
 		{
 			print_env();
+			free_array(cmd);
 			continue;
 		}
 		for (i = 0; i < 3 ; i++)
@@ -40,4 +39,5 @@ void inf_loop(void)
 		stats = 0;
 	} while (1);
 	free(line);
+	free_array(cmd);
 }
