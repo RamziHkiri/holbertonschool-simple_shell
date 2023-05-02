@@ -17,7 +17,7 @@ char *read_line(void)
 		exit(EXIT_FAILURE);
 	}
 
-	while (1)
+	while (getchar())
 	{
 		c = getchar();
 
